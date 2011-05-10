@@ -1,7 +1,7 @@
-" File:          manhelper.vim
-" Author:        Wei-Ren Huang
-" Mail:          wrenth04@gmail.com
-" Version:       1.0
+" File:        manhelper.vim
+" Author:      Wei-Ren Huang
+" Mail:        wrenth04@gmail.com
+" Version:     1.0
 " Last Modified: 2011.05.10
 
 command! ManHelper :call s:ManHelper(expand("<cword>"))
@@ -27,12 +27,12 @@ function! s:ManHelper(keyword)
 endfunction
 
 function! s:FindWindow()
-    let winNum = bufwinnr(g:ManHelper_title)
-    if winNum != -1
+	let winNum = bufwinnr(g:ManHelper_title)
+	if winNum != -1
 		return winNum
 	else
 		return s:ManHelper_open()
-    endif
+	endif
 endfunction
 
 function! s:ManHelper_open()
@@ -40,20 +40,20 @@ function! s:ManHelper_open()
 	let winLoc = 'botright vertical'
 	let winSize = g:ManHelper_winWidth
 
-    if bufNum == -1
-        " Create a new buffer
-        let wcmd = g:ManHelper_title
-    else
-        " Edit the existing buffer
-        let wcmd = '+buffer' . bufNum
-    endif
-    " Create the ManHelper window
-    exe 'silent! ' . winLoc . ' ' . winSize . 'split ' . wcmd
+	if bufNum == -1
+		" Create a new buffer
+		let wcmd = g:ManHelper_title
+	else
+		" Edit the existing buffer
+		let wcmd = '+buffer' . bufNum
+	endif
+	" Create the ManHelper window
+	exe 'silent! ' . winLoc . ' ' . winSize . 'split ' . wcmd
 	" ManHelper init
-    setlocal nowrap
-    setlocal nonumber
+	setlocal nowrap
+	setlocal nonumber
 	setlocal foldcolumn=0
-    setlocal noreadonly
+	setlocal noreadonly
 	silent! setlocal buftype=nofile
 	if v:version >= 601
 		silent! setlocal nobuflisted
