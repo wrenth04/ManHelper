@@ -8,6 +8,8 @@ command! ManHelper :call s:ManHelper(expand("<cword>"))
 
 let g:ManHelper_title = '__Man_Helper__'
 let g:ManHelper_winWidth = 50
+" TODO: user can set man section by menu
+let g:ManHelper_section = 3
 
 function! s:ManHelper(keyword)
 	if !executable('man')
@@ -22,7 +24,9 @@ function! s:ManHelper(keyword)
 	endif
 	" TODO: get current window width
 	let winSize = g:ManHelper_winWidth
-	let cmd = '%!export MANWIDTH=' . winSize . ' && man 3 ' . a:keyword
+	let section = g:ManHelper_section
+	" TODO: hidden warning message
+	let cmd = '%!export MANWIDTH=' . winSize . ' && man ' . section . ' ' . a:keyword
 	silent! exe cmd
 endfunction
 
@@ -37,6 +41,7 @@ endfunction
 
 function! s:ManHelper_open()
 	let bufNum = bufnr(g:ManHelper_title)
+	" TODO: user can set window location 
 	let winLoc = 'botright vertical'
 	let winSize = g:ManHelper_winWidth
 
