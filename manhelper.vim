@@ -1,8 +1,8 @@
-" File:        manhelper.vim
-" Author:      Wei-Ren Huang
-" Mail:        wrenth04@gmail.com
-" Version:     1.0
-" Last Modified: 2011.05.10
+" File:          manhelper.vim
+" Author:        Wei-Ren Huang
+" Mail:          wrenth04@gmail.com
+" Version:       1.1
+" Last Modified: 2011.05.12
 
 command! ManHelper :call s:ManHelper(expand("<cword>"))
 
@@ -11,7 +11,7 @@ let g:ManHelper_winWidth = 50
 
 function! s:ManHelper(keyword)
 	if !executable('man')
-		echo "unable to excute command 'man', add it to enviroment variables."
+		echo 'unable to excute command "man", add it to enviroment variables.'
 		return
 	endif
 
@@ -22,8 +22,8 @@ function! s:ManHelper(keyword)
 	endif
 	" TODO: get current window width
 	let winSize = g:ManHelper_winWidth
-	let command = '%!export MANWIDTH=' . winSize . ' && man 3 ' . a:keyword
-	exe command
+	let cmd = '%!export MANWIDTH=' . winSize . ' && man 3 ' . a:keyword
+	silent! exe cmd
 endfunction
 
 function! s:FindWindow()
