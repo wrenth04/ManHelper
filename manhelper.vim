@@ -8,8 +8,9 @@ command! ManHelper :call s:ManHelper(expand("<cword>"))
 
 let g:ManHelper_title = '__Man_Helper__'
 let g:ManHelper_winWidth = 50
-" TODO: user can set man section by menu
+" TODO: user can select man section by menu
 let g:ManHelper_section = 3
+autocmd Filetype sh :let g:ManHelper_section = 1
 
 function! s:ManHelper(keyword)
 	if !executable('man')
@@ -59,6 +60,7 @@ function! s:ManHelper_open()
 	setlocal nonumber
 	setlocal foldcolumn=0
 	setlocal noreadonly
+	setlocal winfixwidth
 	silent! setlocal buftype=nofile
 	if v:version >= 601
 		silent! setlocal nobuflisted
