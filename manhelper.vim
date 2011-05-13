@@ -1,8 +1,8 @@
 " File:          manhelper.vim
 " Author:        Wei-Ren Huang
 " Mail:          wrenth04@gmail.com
-" Version:       1.1
-" Last Modified: 2011.05.12
+" Version:       1.2
+" Last Modified: 2011.05.13
 
 command! ManHelper :call s:ManHelper(expand("<cword>"))
 
@@ -23,8 +23,8 @@ function! s:ManHelper(keyword)
 	if winnr() != winNum
 		exe winNum . 'wincmd w'
 	endif
-	" TODO: get current window width
-	let winSize = g:ManHelper_winWidth
+	" get current window width
+	let winSize = winwidth(0)
 	let section = g:ManHelper_section
 	" TODO: hidden warning message
 	let cmd = '%!export MANWIDTH=' . winSize . ' && man ' . section . ' ' . a:keyword
